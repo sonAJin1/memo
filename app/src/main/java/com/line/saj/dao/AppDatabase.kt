@@ -6,14 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.line.saj.components.model.Memo
+import com.line.saj.utils.Constants
 
-@Database(entities = [Memo::class], version = 2)
+@Database(entities = [Memo::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun memoDao(): MemoDao
 
 
     companion object {
-        val DB_NAME = "databinding-db"
+        val DB_NAME = Constants.DB_NAME
 
         private var instance: AppDatabase? = null
 
