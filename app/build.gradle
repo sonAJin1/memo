@@ -17,6 +17,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    dataBinding {
+        enabled = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -44,14 +47,7 @@ dependencies {
 
 
     //firebase
-
-    //    implementation 'com.google.firebase:firebase-messaging:17.3.4'
-
     implementation 'com.google.firebase:firebase-core:17.0.0'
-
-    //    implementation 'com.google.firebase:firebase-crash:17.3.4'
-
-    //    implementation 'com.google.android.gms:play-services-maps:16.1.0'
 
     //retrofit2 & okhttp3
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'

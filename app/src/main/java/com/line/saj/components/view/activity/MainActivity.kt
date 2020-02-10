@@ -1,7 +1,8 @@
-package com.line.saj
+package com.line.saj.components.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.line.saj.R
 
 class MainActivity : AppCompatActivity() {
 
