@@ -9,7 +9,7 @@ import com.line.saj.components.model.Memo
 
 @Database(entities = [Memo::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun catDao(): MemoDao
+    abstract fun memoDao(): MemoDao
 
 
     companion object {
@@ -27,17 +27,18 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context): AppDatabase {
-            return Room.databaseBuilder(context.applicationContext, AppDatabase::class.java,
+            return Room.databaseBuilder(
+                context.applicationContext, AppDatabase::class.java,
                 DB_NAME
-            )
-                .addCallback(object : RoomDatabase.Callback() {
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        super.onCreate(db)
-
-//                        var request = OneTimeWorkRequest.Builder(CatDBWoker::class.java).build()
-//                        WorkManager.getInstance().enqueue(request)
-                    }
-                }).build()
+            ).build()
+//                .addCallback(object : RoomDatabase.Callback() {
+//                    override fun onCreate(db: SupportSQLiteDatabase) {
+//                        super.onCreate(db)
+//
+////                        var request = OneTimeWorkRequest.Builder(CatDBWoker::class.java).build()
+////                        WorkManager.getInstance().enqueue(request)
+//                    }
+//                }).build()
         }
 
     }
