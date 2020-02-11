@@ -13,5 +13,5 @@ interface MemoDao {
     fun getAll(): LiveData<List<Memo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(cats: List<Memo>)
+    fun insertAll(memos: List<Memo>)
 }

@@ -49,7 +49,7 @@ class Foreground : Application.ActivityLifecycleCallbacks {
                 }
                 throw IllegalStateException(
                     "Foreground is not initialised and " + "cannot obtain the Application object"
-                )
+                ) as Throwable
             }
             return instance
         }

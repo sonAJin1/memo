@@ -7,7 +7,7 @@ import com.line.saj.components.model.Memo
 import com.line.saj.databinding.ItemMemoBinding
 import com.line.saj.utils.RecyclerArrayAdapter
 
-class MemoAdapter():RecyclerArrayAdapter<Memo,RecyclerView.ViewHolder>(){
+class MemoAdapter() : RecyclerArrayAdapter<Memo, RecyclerView.ViewHolder>() {
 
     //TODO: header나 뭔가 Filter를 적용하여 memo 만들기 검색기능도 있으면 좋을 듯 (화해 앱 처럼)
     private var listener: OnClickListener? = null
@@ -17,39 +17,26 @@ class MemoAdapter():RecyclerArrayAdapter<Memo,RecyclerView.ViewHolder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
-            TYPE_ITEM -> ItemViewHolder(
-                ItemMemoBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                )
+        return ItemViewHolder(
+            ItemMemoBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
             )
-//            TYPE_FOOTER -> FooterViewHolder(
-//                ItemProgressBinding.inflate(
-//                    LayoutInflater.from(parent.context),
-//                    parent,
-//                    false
-//                )
-//            )
-            else -> throw Exception("Unknow viewType $viewType")
-        }
+        )
     }
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         if (holder is ItemViewHolder) {
             var product = getItem(position)
             holder.bind(product!!)
             val binding = holder.binding
 
             binding.root.setOnClickListener {
+                listener!!.onClickItem(product.memoId)
             }
-
-
         }
-
     }
 
 

@@ -3,11 +3,15 @@ package com.line.saj.components.view.activity
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.line.saj.R
 import com.line.saj.base.BaseActivity
+import com.line.saj.components.model.Memo
+import com.line.saj.components.view.adapter.MemoAdapter
 import com.line.saj.components.viewModel.MemoListViewModel
 import com.line.saj.dao.AppDatabase
 import com.line.saj.databinding.ActivityMainBinding
@@ -36,7 +40,8 @@ class MainActivity : BaseActivity() {
         val factory = MemoViewModelFactory(memoRepo)
         val vm: MemoListViewModel =
             ViewModelProviders.of(this, factory).get(MemoListViewModel::class.java)
-        val adapter = initAdapter(binding)
+
+        initAdapter(binding)
 
 
         binding.vm = vm
@@ -50,7 +55,22 @@ class MainActivity : BaseActivity() {
     //  Adapter
     //
     // ================================================
+
     private fun initAdapter(binding: ActivityMainBinding){
+        val adapter = MemoAdapter()
+
+        adapter.setListener(object : MemoAdapter.OnClickListener {
+            override fun onClickItem(id: Int) {
+                //TODO: memo 상세 페이지로 이동
+            }
+
+        })
+
+        adapter.add(Memo(0,"메모 제목입니다","메모 내용입니다"))
+        adapter.add(Memo(1,"test2","test"))
+        adapter.add(Memo(2,"test3","test"))
+
+        binding.rcMemo.adapter = adapter
 
     }
 

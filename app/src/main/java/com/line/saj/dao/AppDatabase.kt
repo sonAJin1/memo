@@ -33,13 +33,19 @@ abstract class AppDatabase : RoomDatabase() {
                 DB_NAME
             ).build()
 //                .addCallback(object : RoomDatabase.Callback() {
-//                    override fun onCreate(db: SupportSQLiteDatabase) {
-//                        super.onCreate(db)
+//                override fun onCreate(db: SupportSQLiteDatabase) {
+//                    super.onCreate(db)
 //
-////                        var request = OneTimeWorkRequest.Builder(CatDBWoker::class.java).build()
-////                        WorkManager.getInstance().enqueue(request)
-//                    }
-//                }).build()
+//                    val memo =  ArrayList<Memo>()
+//                    memo.add(Memo(0,"test1","test"))
+//                    memo.add(Memo(1,"test2","test"))
+//                    memo.add(Memo(2,"test3","test"))
+//
+//                    val database = AppDatabase.getInstance(context)
+//                    database.memoDao().insertAll(memo)
+//
+//                }
+//            }).build()
         }
 
     }

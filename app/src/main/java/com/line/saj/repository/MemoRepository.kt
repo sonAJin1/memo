@@ -2,8 +2,8 @@ package com.line.saj.repository
 
 import com.line.saj.dao.MemoDao
 
-class MemoRepository private constructor(private val catDao: MemoDao) {
-    fun getAllCats() = catDao.getAll()
+class MemoRepository private constructor(private val memoDao: MemoDao) {
+    fun getAllMemos() = memoDao.getAll()
 
     companion object {
         @Volatile
