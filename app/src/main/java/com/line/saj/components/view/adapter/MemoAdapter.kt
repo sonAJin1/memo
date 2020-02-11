@@ -29,12 +29,12 @@ class MemoAdapter() : RecyclerArrayAdapter<Memo, RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is ItemViewHolder) {
-            var product = getItem(position)
-            holder.bind(product!!)
+            var memo = getItem(position)
+            holder.bind(memo!!)
             val binding = holder.binding
 
             binding.root.setOnClickListener {
-                listener!!.onClickItem(product.memoId)
+                listener!!.onClickItem(memo.memoId)
             }
         }
     }

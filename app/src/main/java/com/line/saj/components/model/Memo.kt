@@ -12,4 +12,5 @@ data class Memo(
     , @ColumnInfo(name = "title") var title: String = ""
     , @ColumnInfo(name = "contents") var contents: String = ""
     , @ColumnInfo(name = "image") var image: String = ""
+    , @ColumnInfo(name = "imageType") var imageType: String = ""
 )

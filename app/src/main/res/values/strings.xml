@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">line_saj</string>
+
+    <string name="photo_type_camera">Camera</string>
+    <string name="photo_type_gallery">Gallery</string>
+    <string name="photo_type_url">URL</string>
+
 </resources>

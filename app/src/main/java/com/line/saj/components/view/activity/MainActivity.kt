@@ -73,6 +73,8 @@ class MainActivity : BaseActivity() {
         })
 
         adapter.add(Memo(0,"메모 제목 test 입니다","메모 내용 test 입니다",""))
+        adapter.add(Memo(1,"메모 제목 test 입니다","메모 내용 test 입니다",""))
+        adapter.add(Memo(2,"메모 제목 test 입니다","메모 내용 test 입니다",""))
 
 
         binding.rcMemo.adapter = adapter
