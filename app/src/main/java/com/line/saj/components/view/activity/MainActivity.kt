@@ -1,6 +1,7 @@
 package com.line.saj.components.view.activity
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -43,6 +44,11 @@ class MainActivity : BaseActivity() {
 
         initAdapter(binding)
 
+        vm.addMemoConverter.observe(this, Observer {
+            val intent = Intent(this, AddMemoActivity::class.java)
+            startActivity(intent)
+        })
+
 
         binding.vm = vm
         binding.lifecycleOwner = this
@@ -66,9 +72,8 @@ class MainActivity : BaseActivity() {
 
         })
 
-        adapter.add(Memo(0,"메모 제목입니다","메모 내용입니다"))
-        adapter.add(Memo(1,"test2","test"))
-        adapter.add(Memo(2,"test3","test"))
+        adapter.add(Memo(0,"메모 제목 test 입니다","메모 내용 test 입니다",""))
+
 
         binding.rcMemo.adapter = adapter
 

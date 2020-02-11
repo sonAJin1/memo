@@ -5,15 +5,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.line.saj.components.model.Memo
 import com.line.saj.repository.MemoRepository
+import okhttp3.internal.Util
 
 class MemoListViewModel(memoRepository: MemoRepository) : ViewModel() {
-    var initMemo = memoRepository.getAllMemos()
-    val memo = MutableLiveData<List<Memo>>()
-
     private val mediator = MediatorLiveData<Unit>()
 
+    var memoRepoData = memoRepository.getAllMemos()
+    val memo = MutableLiveData<List<Memo>>()
+
+    var addMemoConverter = MutableLiveData<Unit>()
+
+
+
     init {
-        mediator.addSource(initMemo) { memo.value = it }
+        mediator.addSource(memoRepoData) { memo.value = it }
+    }
+
+
+    fun onClickAddMemo(){
+        addMemoConverter.value = Unit
     }
 
 }
