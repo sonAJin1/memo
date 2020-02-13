@@ -22,7 +22,7 @@
 
 
             <EditText
-                android:id="@+id/et_category"
+                android:id="@+id/et_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="19sp"
@@ -48,7 +48,7 @@
         </RelativeLayout>
 
         <EditText
-            android:id="@+id/et_ask"
+            android:id="@+id/et_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rl_select_category"
@@ -74,17 +74,6 @@
             android:layout_above="@+id/scroll"
             android:layout_marginLeft="@dimen/x24dp"/>
 
-        <TextView
-            android:id="@+id/tv_total_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="#80333333"
-            android:letterSpacing="-0.02"
-            android:lineSpacingExtra="6sp"
-            android:text="/5"
-            android:layout_toRightOf="@+id/tv_count_photo"
-            android:layout_above="@+id/scroll"/>
 
         <HorizontalScrollView
             android:id="@+id/scroll"
@@ -99,6 +88,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ScrollView
+                    android:id="@+id/sv_thumbnail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rc_thumbnail"
                     android:layout_width="wrap_content"
@@ -108,6 +101,7 @@
 
 
                 </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
 
                 <RelativeLayout
                     android:id="@+id/rl_photo_btn"
@@ -115,7 +109,7 @@
                     android:layout_height="@dimen/x56dp"
                     android:background="@drawable/bg_photo_btn"
                     android:src="@drawable/ic_add_circle_black_24dp"
-                    android:layout_toRightOf="@+id/rc_thumbnail"
+                    android:layout_toRightOf="@+id/sv_thumbnail"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="@dimen/x10dp"
                     android:layout_marginTop="@dimen/x4dp">
@@ -147,6 +141,7 @@
             android:textColor="#ffff"
             android:gravity="center_horizontal"
             android:background="@color/cardview_dark_background"
+            android:onClick="@{()->vm.onClickAddMemo()}"
             />
 
 

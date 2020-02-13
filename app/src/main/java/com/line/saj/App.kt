@@ -11,7 +11,6 @@ import java.util.concurrent.CopyOnWriteArrayList
 
 class App : Application() {
 
-    private val listeners = CopyOnWriteArrayList<OnFinishInitializeListener>()
     private var dialog: AppCompatDialog? = null
 
     companion object {
@@ -48,24 +47,6 @@ class App : Application() {
 
                 }
             })
-    }
-
-
-    interface OnFinishInitializeListener {
-
-        fun onFinish()
-    }
-
-    fun addListener(listener: OnFinishInitializeListener) {
-        this.listeners.add(listener)
-    }
-
-    fun removeListener() {
-        listeners.clear()
-    }
-
-    fun removeListener(listener: OnFinishInitializeListener) {
-        listeners.remove(listener)
     }
 
     fun showProgress(activity: Activity?) {

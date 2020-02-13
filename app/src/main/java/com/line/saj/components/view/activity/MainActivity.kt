@@ -20,7 +20,17 @@ import com.line.saj.factory.MemoViewModelFactory
 import com.line.saj.network.ConnectivityHelper
 import com.line.saj.repository.MemoRepository
 
+
+/**
+ *
+ * TODO: !!사용한 부분 .?등을 사용하거나 최대한 사용을 지양할 것
+ *
+ *
+ *
+ */
 class MainActivity : BaseActivity() {
+
+    private var memoRepo: MemoRepository? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +47,16 @@ class MainActivity : BaseActivity() {
 
     private fun subscribeUi(binding: ActivityMainBinding) {
 
-        val memoRepo = MemoRepository.getInstance(AppDatabase.getInstance(this).memoDao())
-        val factory = MemoViewModelFactory(memoRepo)
+        memoRepo = MemoRepository.getInstance(AppDatabase.getInstance(this).memoDao())
+        val factory = MemoViewModelFactory(memoRepo!!)
         val vm: MemoListViewModel =
             ViewModelProviders.of(this, factory).get(MemoListViewModel::class.java)
 
         initAdapter(binding)
+
+        vm.memo.observe(this, Observer {
+            addAdapter(binding,it)
+        })
 
         vm.addMemoConverter.observe(this, Observer {
             val intent = Intent(this, AddMemoActivity::class.java)
@@ -70,18 +84,40 @@ class MainActivity : BaseActivity() {
                 //TODO: memo 상세 페이지로 이동
             }
 
+            override fun onClickDeleteItem(id: Int) {
+                deleteMemo(id)
+            }
+
         })
 
-        adapter.add(Memo(0,"메모 제목 test 입니다","메모 내용 test 입니다",""))
-        adapter.add(Memo(1,"메모 제목 test 입니다","메모 내용 test 입니다",""))
-        adapter.add(Memo(2,"메모 제목 test 입니다","메모 내용 test 입니다",""))
-
+       // memoRepo!!.addMemos(Memo(0,"메모 제목 예제입니다","메모 내용 예제입니다",""))
 
         binding.rcMemo.adapter = adapter
+    }
 
+    private fun addAdapter(binding: ActivityMainBinding, memo: List<Memo>){
+        val adapter = binding.rcMemo.adapter as MemoAdapter
+        adapter.removeAll()
+        adapter.addAll(memo)
     }
 
 
+
+
+    // ================================================
+    //
+    //  Repo Data
+    //
+    // ================================================
+
+    private fun deleteMemo(memoId: Int){
+        val r = Runnable {
+            memoRepo!!.deleteMemo(memoId)
+        }
+
+        val thread = Thread(r)
+        thread.start()
+    }
 
 
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="memo"
             type="com.line.saj.components.model.Memo" />
@@ -13,23 +14,22 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="@dimen/x24dp"
-        android:paddingRight="@dimen/x24dp"
         android:paddingTop="@dimen/x6dp"
+        android:paddingRight="@dimen/x24dp"
         android:paddingBottom="@dimen/x6dp">
 
         <ImageView
             android:id="@+id/iv_thumb"
-            android:layout_width="@dimen/x50dp"
-            android:layout_height="@dimen/x50dp"
             bind_image="@{memo.image}"
-            android:background="@color/colorPrimaryDark"/>
+            android:layout_width="@dimen/x50dp"
+            android:layout_height="@dimen/x50dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/iv_thumb"
-            android:layout_marginLeft="@dimen/x5dp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x5dp"
+            android:layout_toRightOf="@+id/iv_thumb"
             android:orientation="vertical">
 
             <TextView
@@ -37,16 +37,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{memo.title}"
-                tools:text="메모 테스트"/>
+                tools:text="메모 테스트" />
 
             <TextView
                 android:id="@+id/tv_contents"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{memo.contents}"
-                tools:text="메모 테스트"/>
+                tools:text="메모 테스트" />
         </LinearLayout>
 
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="@dimen/x30dp"
+            android:layout_height="@dimen/x30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:alpha=".4"
+            android:background="@drawable/ic_clear_black_24dp" />
 
 
     </RelativeLayout>

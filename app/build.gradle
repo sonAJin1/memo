@@ -46,9 +46,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.0.0'
 
 
-    //firebase
-    implementation 'com.google.firebase:firebase-core:17.0.0'
-
     //retrofit2 & okhttp3
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.5.0'
@@ -84,6 +81,8 @@ dependencies {
     // rxjava
     implementation "io.reactivex.rxjava2:rxjava:2.2.0"
     implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
-
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+
+    // pick image
+    implementation 'com.github.yalantis:ucrop:2.2.4'
 }

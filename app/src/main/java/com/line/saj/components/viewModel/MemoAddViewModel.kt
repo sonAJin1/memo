@@ -8,6 +8,7 @@ import com.line.saj.repository.MemoRepository
 class MemoAddViewModel() : ViewModel() {
     var closeConverter = MutableLiveData<Unit>()
     var addPhotoConverter = MutableLiveData<Unit>()
+    var addMemoConverter = MutableLiveData<Unit>()
 
 
     fun onClickClose(){
@@ -17,4 +18,9 @@ class MemoAddViewModel() : ViewModel() {
     fun onClickAddPhoto(){
         addPhotoConverter.value = Unit
     }
+
+    fun onClickAddMemo(){
+        addMemoConverter.value = Unit
+    }
+
 }
