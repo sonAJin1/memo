@@ -1,7 +1,6 @@
 package com.line.saj.dao
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.line.saj.components.model.Memo
 

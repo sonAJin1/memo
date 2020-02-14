@@ -5,4 +5,6 @@
     <string name="photo_type_gallery">Gallery</string>
     <string name="photo_type_url">URL</string>
 
+    <string name="edit_url_hint">URL을 입력해주세요</string>
+
 </resources>

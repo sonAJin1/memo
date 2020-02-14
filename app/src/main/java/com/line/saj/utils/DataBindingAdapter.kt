@@ -12,6 +12,8 @@ class DataBindingAdapter {
         @BindingAdapter("bind_image")
         @JvmStatic
         fun bindImage(view: ImageView, url: String?) {
+            if(url==null) return
+
             Glide.with(view.context)
                 .load(url)
                 .placeholder(R.drawable.ic_photo_black_24dp)

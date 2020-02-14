@@ -3,10 +3,8 @@ package com.line.saj.components.view.activity
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.*
-import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil

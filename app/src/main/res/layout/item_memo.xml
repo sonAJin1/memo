@@ -20,7 +20,7 @@
 
         <ImageView
             android:id="@+id/iv_thumb"
-            bind_image="@{memo.image.get(0)}"
+            bind_image="@{memo.image.size()>0 ? memo.image.get(0) : null}"
             android:layout_width="@dimen/x50dp"
             android:layout_height="@dimen/x50dp" />
 

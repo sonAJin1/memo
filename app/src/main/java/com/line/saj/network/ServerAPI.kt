@@ -5,6 +5,8 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Headers
 
+
+//TODO: 지워줄 것
 interface ServerAPI {
 
     @Headers("Content-Type: application/json")

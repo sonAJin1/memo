@@ -1,10 +1,7 @@
 package com.line.saj.components.view.activity
 
-import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -23,39 +20,46 @@ import com.line.saj.repository.MemoRepository
 
 /**
  *
- * TODO: !!사용한 부분 .?등을 사용하거나 최대한 사용을 지양할 것
- *
- *
+ * TODO: 1. !!사용한 부분 .?등을 사용하거나 최대한 사용을 지양할 것
+ *       2. 상단에 스크롤에 따라서 보이고 안보이는 검색바 만들 것
+ *       3. 상세 페이지 만들 것
+ *       4. url 입력해서 이미지 가져오는 dialog 만들 것
+ *       6. memo list 삭제 방법 : x 버튼 클릭에서 오른쪽으로 슬라이드 해서 지울 수 있게
+ *       7. memo title, contents null check
+ *       8. design
+ *       9. 다른 메모앱 보고 참고 할 것
+ *       10. 메모가 쓰인 날짜 model에 추가 할 것
+ *       11. 가능하면 달력 기능까지 추가
  *
  */
 class MainActivity : BaseActivity() {
 
     private var memoRepo: MemoRepository? = null
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val binding: ActivityMainBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         if (!ConnectivityHelper.isConnectedToNetwork(this)) showNetworkErrorAlert()
 
-        subscribeUi(binding)
+        subscribeUi()
     }
 
 
-    private fun subscribeUi(binding: ActivityMainBinding) {
+    private fun subscribeUi() {
 
         memoRepo = MemoRepository.getInstance(AppDatabase.getInstance(this).memoDao())
         val factory = MemoViewModelFactory(memoRepo!!)
         val vm: MemoListViewModel =
             ViewModelProviders.of(this, factory).get(MemoListViewModel::class.java)
 
-        initAdapter(binding)
+        initAdapter()
 
         vm.memo.observe(this, Observer {
-            addAdapter(binding,it)
+            addMemo(it)
         })
 
         vm.addMemoConverter.observe(this, Observer {
@@ -69,14 +73,13 @@ class MainActivity : BaseActivity() {
     }
 
 
-
     // ================================================
     //
     //  Adapter
     //
     // ================================================
 
-    private fun initAdapter(binding: ActivityMainBinding){
+    private fun initAdapter() {
         val adapter = MemoAdapter()
 
         adapter.setListener(object : MemoAdapter.OnClickListener {
@@ -85,23 +88,19 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onClickDeleteItem(id: Int) {
-                deleteMemo(id)
+                showDeleteMemoAlert(id)
             }
 
         })
 
-       // memoRepo!!.addMemos(Memo(0,"메모 제목 예제입니다","메모 내용 예제입니다",""))
-
         binding.rcMemo.adapter = adapter
     }
 
-    private fun addAdapter(binding: ActivityMainBinding, memo: List<Memo>){
+    private fun addMemo(memo: List<Memo>) {
         val adapter = binding.rcMemo.adapter as MemoAdapter
         adapter.removeAll()
         adapter.addAll(memo)
     }
-
-
 
 
     // ================================================
@@ -110,7 +109,7 @@ class MainActivity : BaseActivity() {
     //
     // ================================================
 
-    private fun deleteMemo(memoId: Int){
+    private fun deleteMemo(memoId: Int) {
         val r = Runnable {
             memoRepo!!.deleteMemo(memoId)
         }
@@ -118,8 +117,6 @@ class MainActivity : BaseActivity() {
         val thread = Thread(r)
         thread.start()
     }
-
-
 
 
     // ================================================
@@ -131,12 +128,19 @@ class MainActivity : BaseActivity() {
     private fun showNetworkErrorAlert() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("ERROR").setMessage("인터넷 연결을 확인해주세요.")
-        builder.setPositiveButton(
-            "OK"
-        ) { _, _ ->
-            finish()
-        }
+        builder.setPositiveButton("OK") { _, _ -> finish() }
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
+
+
+    private fun showDeleteMemoAlert(memoId: Int) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Alert").setMessage("메모를 삭제하시겠습니까?")
+        builder.setPositiveButton("삭제") { _, _ -> deleteMemo(memoId) }
+        builder.setNegativeButton("취소") { _, _ -> }
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.show()
+    }
+
 }

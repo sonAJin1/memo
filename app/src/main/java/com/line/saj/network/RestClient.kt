@@ -10,6 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
+//TODO: 지워 줄 것
+
 open class RestClient {
 
     val BASE_URL = Constants.SERVER_URL

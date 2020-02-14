@@ -3,8 +3,6 @@ package com.line.saj.components.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.line.saj.components.model.Memo
-import com.line.saj.databinding.ItemMemoBinding
 import com.line.saj.databinding.ItemThumbnailBinding
 import com.line.saj.utils.RecyclerArrayAdapter
 
