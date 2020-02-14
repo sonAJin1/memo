@@ -43,7 +43,6 @@ class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickLis
 
 
     private var imageThumbnailList = ArrayList<String>()
- //   private var imageThumbnail = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +76,10 @@ class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickLis
             val title = binding.etTitle.text.toString()
             val content = binding.etContent.text.toString()
 
+            if(title.isEmpty() || content.isEmpty()){
+                showContentsNullAlert()
+                return@Observer
+            }
             addMemo(Memo(0, title, content, imageThumbnailList, "", ""))
             finish()
         })
@@ -171,6 +174,14 @@ class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickLis
             builder.setNegativeButton("확인") { _, _ -> }
             builder.show()
         }
+    }
+
+    private fun showContentsNullAlert(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Alert")
+        builder.setMessage("메모의 제목과 내용을 작성해주세요.")
+        builder.setNegativeButton("확인") { _, _ -> }
+        builder.show()
     }
 
 

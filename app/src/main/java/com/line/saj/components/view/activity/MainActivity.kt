@@ -28,7 +28,7 @@ import com.line.saj.repository.MemoRepository
  *       7. memo title, contents null check
  *       8. design
  *       9. 다른 메모앱 보고 참고 할 것
- *       10. 메모가 쓰인 날짜 model에 추가 할 것
+ *       10. 메모가 쓰인 날짜 model에 추가 할 것 (model에는 있고, converter에서 date timestamp로 변경하는 부분과, addMemoActivity 에서 현재 시간 가져와서 넣어주는 부분 만들 것)
  *       11. 가능하면 달력 기능까지 추가
  *
  */
