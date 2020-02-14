@@ -40,13 +40,12 @@ import java.io.IOException
 class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickListener {
 
     private val REQUEST_IMAGE = 0
-    private var imageArray = ArrayList<Bitmap>()
     private lateinit var binding: ActivityAddMemoBinding
     private val detailFragment = PhotoTypeBottomDialogFragment.newInstance()
 
 
-    private var imageThumbnailList = arrayListOf<Uri>()
-    private var imageThumbnail = ""
+    private var imageThumbnailList = ArrayList<String>()
+ //   private var imageThumbnail = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,7 +79,7 @@ class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickLis
             val title = binding.etTitle.text.toString()
             val content = binding.etContent.text.toString()
 
-            addMemo(Memo(0, title, content, imageThumbnail, "", ""))
+            addMemo(Memo(0, title, content, imageThumbnailList, "", ""))
             finish()
         })
 
@@ -111,7 +110,8 @@ class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickLis
         val adapter = binding.rcThumbnail.adapter as ThumbnailAdapter
         adapter.add(thumbnailUri)
 
-        imageThumbnail = thumbnailUri
+       //imageThumbnail = thumbnailUri
+        imageThumbnailList.add(thumbnailUri)
     }
 
     private fun deleteThumbnail(position: Int) {
@@ -252,8 +252,8 @@ class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickLis
                 addThumbnail(Xutil.getRealPath(this, uri)!!)
                 Log.e("uri", Xutil.getRealPath(this, uri)!!)
                 try {
-                    val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
-                    imageArray.add(bitmap)
+//                    val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+//                    imageArray.add(bitmap)
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }

@@ -91,12 +91,14 @@
                 <ScrollView
                     android:id="@+id/sv_thumbnail"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rc_thumbnail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/rl_photo_btn"
+                    android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
 
 

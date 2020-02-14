@@ -163,7 +163,7 @@ object Xutil {
                 return cursor.getString(index)
             }
         } finally {
-            if (cursor != null) cursor.close()
+            cursor?.close()
         }
         return null
     }

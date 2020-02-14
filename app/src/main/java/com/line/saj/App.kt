@@ -6,7 +6,6 @@ import android.app.Application
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialog
-import com.line.saj.base.Foreground
 import java.util.concurrent.CopyOnWriteArrayList
 
 class App : Application() {
@@ -29,24 +28,11 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-
         instance = this
 
         if (BuildConfig.DEBUG) {
         }
 
-
-        Foreground.get(this)!!.addListener(
-            object : Foreground.Listener {
-                override fun foreground(activity: Activity?) {
-
-                }
-
-                override fun background(activity: Activity?) {
-
-                }
-            })
     }
 
     fun showProgress(activity: Activity?) {

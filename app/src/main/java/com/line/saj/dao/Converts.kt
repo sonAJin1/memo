@@ -7,15 +7,15 @@ import com.google.gson.Gson
 class Converts {
 
     @TypeConverter
-    fun listToJson(value: List<Uri>?): String {
+    fun listToJson(value: List<String>?): String {
 
         return Gson().toJson(value)
     }
 
     @TypeConverter
-    fun jsonToList(value: String): List<Uri>? {
+    fun jsonToList(value: String): List<String>? {
 
-        val objects = Gson().fromJson(value, Array<Uri>::class.java) as Array<Uri>
+        val objects = Gson().fromJson(value, Array<String>::class.java) as Array<String>
         return objects.toList()
     }
 }
