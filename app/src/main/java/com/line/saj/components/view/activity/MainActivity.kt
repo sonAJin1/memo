@@ -2,6 +2,7 @@ package com.line.saj.components.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -25,27 +26,30 @@ import com.line.saj.repository.MemoRepository
  *       3. 상세 페이지 만들 것
  *       4. url 입력해서 이미지 가져오는 dialog 만들 것
  *       6. memo list 삭제 방법 : x 버튼 클릭에서 오른쪽으로 슬라이드 해서 지울 수 있게
- *       7. memo title, contents null check
  *       8. design
  *       9. 다른 메모앱 보고 참고 할 것
  *       10. 메모가 쓰인 날짜 model에 추가 할 것 (model에는 있고, converter에서 date timestamp로 변경하는 부분과, addMemoActivity 에서 현재 시간 가져와서 넣어주는 부분 만들 것)
  *       11. 가능하면 달력 기능까지 추가
+ *       12. 기분 체크하는 부
  *
  */
+
 class MainActivity : BaseActivity() {
 
     private var memoRepo: MemoRepository? = null
     private lateinit var binding: ActivityMainBinding
 
+    val INTENT_MEMO = "INTENT_MEMO"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         if (!ConnectivityHelper.isConnectedToNetwork(this)) showNetworkErrorAlert()
 
         subscribeUi()
+
     }
 
 
@@ -67,9 +71,9 @@ class MainActivity : BaseActivity() {
             startActivity(intent)
         })
 
-
         binding.vm = vm
         binding.lifecycleOwner = this
+
     }
 
 
@@ -83,8 +87,10 @@ class MainActivity : BaseActivity() {
         val adapter = MemoAdapter()
 
         adapter.setListener(object : MemoAdapter.OnClickListener {
-            override fun onClickItem(id: Int) {
-                //TODO: memo 상세 페이지로 이동
+            override fun onClickItem(memo: Memo) {
+                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                intent.putExtra(INTENT_MEMO, memo)
+                startActivity(intent)
             }
 
             override fun onClickDeleteItem(id: Int) {

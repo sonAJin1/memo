@@ -4,8 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.os.*
-import android.util.Log
+import android.os.Build
+import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -16,7 +16,7 @@ import com.line.saj.R
 import com.line.saj.base.BaseActivity
 import com.line.saj.components.model.Memo
 import com.line.saj.components.view.adapter.ThumbnailAdapter
-import com.line.saj.components.view.fragment.PhotoTypeBottomDialogFragment
+import com.line.saj.components.view.fragment.ImageTypeBottomDialogFragment
 import com.line.saj.components.viewModel.MemoAddViewModel
 import com.line.saj.dao.AppDatabase
 import com.line.saj.databinding.ActivityAddMemoBinding
@@ -33,20 +33,22 @@ import com.line.saj.utils.Constants.Companion.INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT
 import com.line.saj.utils.Constants.Companion.REQUEST_GALLERY_IMAGE
 import com.line.saj.utils.Constants.Companion.REQUEST_IMAGE_CAPTURE
 import com.line.saj.utils.Xutil
-import java.io.IOException
+import org.joda.time.DateTime
 
-class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickListener {
+class AddMemoActivity : BaseActivity(), ImageTypeBottomDialogFragment.OnClickListener {
 
     private val REQUEST_IMAGE = 0
     private lateinit var binding: ActivityAddMemoBinding
-    private val detailFragment = PhotoTypeBottomDialogFragment.newInstance()
+    private val detailFragment = ImageTypeBottomDialogFragment.newInstance()
 
+
+    //TODO: add용인지 Modify용인지 확인 할 것
 
     private var imageThumbnailList = ArrayList<String>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_memo)
 
         subscribeUi(binding)
@@ -66,10 +68,8 @@ class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickLis
         vm.closeConverter.observe(this, Observer { finish() })
 
         vm.addPhotoConverter.observe(this, Observer {
-
             if (Build.VERSION.SDK_INT >= 23) getPermission()
-            detailFragment.show(supportFragmentManager, PhotoTypeBottomDialogFragment().TAG)
-
+            detailFragment.show(supportFragmentManager, ImageTypeBottomDialogFragment().TAG)
         })
 
         vm.addMemoConverter.observe(this, Observer {
@@ -80,7 +80,8 @@ class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickLis
                 showContentsNullAlert()
                 return@Observer
             }
-            addMemo(Memo(0, title, content, imageThumbnailList, "", ""))
+
+            addMemo(Memo(0, title, content, imageThumbnailList, DateTime(),null))
             finish()
         })
 
@@ -110,8 +111,6 @@ class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickLis
     private fun addThumbnail(thumbnailUri: String) {
         val adapter = binding.rcThumbnail.adapter as ThumbnailAdapter
         adapter.add(thumbnailUri)
-
-       //imageThumbnail = thumbnailUri
         imageThumbnailList.add(thumbnailUri)
     }
 
@@ -257,15 +256,8 @@ class AddMemoActivity : BaseActivity(), PhotoTypeBottomDialogFragment.OnClickLis
 
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
-                val uri = data!!.getParcelableExtra<Uri>("path")
-                addThumbnail(Xutil.getRealPath(this, uri)!!)
-                Log.e("uri", Xutil.getRealPath(this, uri)!!)
-                try {
-//                    val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
-//                    imageArray.add(bitmap)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
+                val uri = data!!.getParcelableExtra<Uri>("path") ?: return
+                Xutil.getRealPath(this, uri)?.let { addThumbnail(it) }
 
             }
         }

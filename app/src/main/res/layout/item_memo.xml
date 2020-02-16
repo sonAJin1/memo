@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="memo"
             type="com.line.saj.components.model.Memo" />
@@ -45,6 +45,13 @@
                 android:layout_height="wrap_content"
                 android:text="@{memo.contents}"
                 tools:text="메모 테스트" />
+
+            <TextView
+                android:id="@+id/tv_date_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:convert_text="@{memo.creationDate.dayOfMonth}"
+                tools:text="2020.02.02"/>
         </LinearLayout>
 
 

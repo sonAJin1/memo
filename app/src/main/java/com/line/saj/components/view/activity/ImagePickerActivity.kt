@@ -2,17 +2,12 @@ package com.line.saj.components.view.activity
 
 import android.app.Activity
 import android.content.ContentResolver
-import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.OpenableColumns
-import android.util.AttributeSet
 import android.util.Log
-import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider.getUriForFile
 import com.line.saj.R
@@ -37,22 +32,19 @@ class ImagePickerActivity : BaseActivity() {
 
     val TAG = ImagePickerActivity::class.java.simpleName
 
-    var lockAspectRatio = false
-     var setBitmapMaxWidthHeight = false
-     var ASPECT_RATIO_X = 16
-     var ASPECT_RATIO_Y = 9
-     var bitmapMaxWidth = 1000
-     var bitmapMaxHeight = 1000
-     var IMAGE_COMPRESSION = 80
-     var fileName: String? = null
-
-   // var context = this
+     private var lockAspectRatio = false
+     private var setBitmapMaxWidthHeight = false
+     private var aspectRatioX = 16
+     private var aspectRatioY = 9
+     private var bitmapMaxWidth = 1000
+     private var bitmapMaxHeight = 1000
+     private var imageCompression = 80
+     private var fileName: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_picker)
-
 
         val intent = intent
         if (intent == null) {
@@ -60,9 +52,9 @@ class ImagePickerActivity : BaseActivity() {
             return
         }
 
-        ASPECT_RATIO_X = intent.getIntExtra(INTENT_ASPECT_RATIO_X, ASPECT_RATIO_X)
-        ASPECT_RATIO_Y = intent.getIntExtra(INTENT_ASPECT_RATIO_Y, ASPECT_RATIO_Y)
-        IMAGE_COMPRESSION = intent.getIntExtra(INTENT_IMAGE_COMPRESSION_QUALITY, IMAGE_COMPRESSION)
+        aspectRatioX = intent.getIntExtra(INTENT_ASPECT_RATIO_X, aspectRatioX)
+        aspectRatioY = intent.getIntExtra(INTENT_ASPECT_RATIO_Y, aspectRatioY)
+        imageCompression = intent.getIntExtra(INTENT_IMAGE_COMPRESSION_QUALITY, imageCompression)
         lockAspectRatio = intent.getBooleanExtra(INTENT_LOCK_ASPECT_RATIO, false)
         setBitmapMaxWidthHeight = intent.getBooleanExtra(INTENT_SET_BITMAP_MAX_WIDTH_HEIGHT, false)
         bitmapMaxWidth = intent.getIntExtra(INTENT_BITMAP_MAX_WIDTH, bitmapMaxWidth)
@@ -132,14 +124,14 @@ class ImagePickerActivity : BaseActivity() {
     private fun cropImage(sourceUri: Uri) {
         val destinationUri = Uri.fromFile(File(cacheDir, queryName(contentResolver, sourceUri)))
         val options = UCrop.Options()
-        options.setCompressionQuality(IMAGE_COMPRESSION)
+        options.setCompressionQuality(imageCompression)
         options.setToolbarColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
         options.setStatusBarColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
         options.setActiveWidgetColor(ContextCompat.getColor(applicationContext, R.color.colorPrimary))
 
         if (lockAspectRatio) options.withAspectRatio(
-            ASPECT_RATIO_X.toFloat(),
-            ASPECT_RATIO_Y.toFloat()
+            aspectRatioX.toFloat(),
+            aspectRatioY.toFloat()
         )
         if (setBitmapMaxWidthHeight) options.withMaxResultSize(bitmapMaxWidth, bitmapMaxHeight)
 

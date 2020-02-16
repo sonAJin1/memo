@@ -36,7 +36,7 @@ class MemoAdapter() : RecyclerArrayAdapter<Memo, RecyclerView.ViewHolder>() {
 
 
             binding.root.setOnClickListener {
-                listener!!.onClickItem(memo.memoId)
+                listener!!.onClickItem(memo)
             }
 
             binding.ivDelete.setOnClickListener{
@@ -60,7 +60,7 @@ class MemoAdapter() : RecyclerArrayAdapter<Memo, RecyclerView.ViewHolder>() {
     }
 
     interface OnClickListener {
-        fun onClickItem(id: Int)
+        fun onClickItem(memo: Memo)
         fun onClickDeleteItem(id: Int)
     }
 }

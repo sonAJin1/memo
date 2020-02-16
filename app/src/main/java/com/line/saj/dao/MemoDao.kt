@@ -3,6 +3,7 @@ package com.line.saj.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.line.saj.components.model.Memo
+import org.joda.time.DateTime
 
 @Dao
 interface MemoDao {
@@ -20,4 +21,8 @@ interface MemoDao {
 
     @Query("DELETE from memos")
     fun deleteAll()
+
+
+    @Query("UPDATE memos SET title = :title, contents = :contents, image = :image, modifyDate = :modifyDate where id = :id")
+    fun update(id:Int, title: String, contents: String, image: List<String>, modifyDate: DateTime)
 }
