@@ -45,6 +45,8 @@ class EditMemoActivity : BaseActivity(), ImageTypeBottomDialogFragment.OnClickLi
 
     private var imageThumbnailList = ArrayList<String>()
 
+    //TODO: 오늘 안에 Parcelable 오류 안잡히면 intent로 model 전달 받는거에서 db에서 get하는 걸로 바꾸기
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
