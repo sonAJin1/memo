@@ -9,4 +9,16 @@
 
     <string name="missing_memo_detail">작성된 메모가 없습니다.</string>
 
+    <string name="alert">Alert</string>
+    <string name="no_permission">권한 없음</string>
+    <string name="need_permission">앱에서 요구하는 권한설정이 필요합니다.\n[설정] > [권한]에서 사용으로 활성해주세요.</string>
+    <string name="denied_no_permission">권한을 승인해야 사진을 첨부할 수 있습니다.</string>
+
+    <string name="add_ok">확인</string>
+    <string name="modify_ok">수정</string>
+    <string name="title_hint">제목을 입력하세요.</string>
+    <string name="contents_hint">메모를 입력하세요.</string>
+    <string name="contents_null_alert">메모의 제목과 내용을 작성해주세요.</string>
+
+
 </resources>

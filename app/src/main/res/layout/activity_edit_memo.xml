@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".components.view.activity.EditMemoActivity">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.line.saj.components.viewModel.MemoEditViewModel"/>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_select_category"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x80dp"
+            android:background="#efefef">
+
+
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:textColor="#333333"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="4sp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/x24dp"
+                android:hint="@string/title_hint"
+                android:text="@{vm.memo.title}"
+                android:background="@android:color/transparent"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_category_arrow"
+                android:layout_width="@dimen/x30dp"
+                android:layout_height="@dimen/x30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x24dp"
+                android:background="@drawable/ic_clear_black_24dp"
+                android:onClick="@{()->vm.onClickClose()}"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_select_category"
+            android:background="@android:color/transparent"
+            android:hint="@string/contents_hint"
+            android:text="@{vm.memo.contents}"
+            android:gravity="left"
+            android:padding="@dimen/x24dp"
+            android:focusable="true"
+            android:layout_above="@+id/tv_count_photo"
+            android:inputType="textMultiLine"/>
+
+
+        <TextView
+            android:id="@+id/tv_count_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#80333333"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="6sp"
+            android:text="0"
+            android:textStyle="bold"
+            android:layout_above="@+id/scroll"
+            android:layout_marginLeft="@dimen/x24dp"/>
+
+
+        <HorizontalScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_ok"
+            android:layout_marginLeft="@dimen/x24dp"
+            android:layout_marginBottom="@dimen/x10dp"
+            android:layout_marginTop="@dimen/x4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ScrollView
+                    android:id="@+id/sv_thumbnail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_thumbnail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/rl_photo_btn"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+
+                </androidx.recyclerview.widget.RecyclerView>
+                </ScrollView>
+
+                <RelativeLayout
+                    android:id="@+id/rl_photo_btn"
+                    android:layout_width="@dimen/x56dp"
+                    android:layout_height="@dimen/x56dp"
+                    android:background="@drawable/bg_photo_btn"
+                    android:src="@drawable/ic_add_circle_black_24dp"
+                    android:layout_toRightOf="@+id/sv_thumbnail"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="@dimen/x10dp"
+                    android:layout_marginTop="@dimen/x4dp">
+
+                    <ImageView
+                        android:id="@+id/iv_photo_btn"
+                        android:layout_width="@dimen/x40dp"
+                        android:layout_height="@dimen/x40dp"
+                        android:src="@drawable/ic_add_circle_black_24dp"
+                        android:alpha="0.5"
+                        android:onClick="@{()->vm.onClickAddPhoto()}"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </HorizontalScrollView>
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/x14dp"
+            android:textSize="20sp"
+            android:letterSpacing="-0.02"
+            android:textStyle="bold"
+            android:text="확인"
+            android:textColor="#ffff"
+            android:gravity="center_horizontal"
+            android:background="@color/cardview_dark_background"
+            android:onClick="@{()->vm.onClickAddMemo()}"
+            />
+
+
+    </RelativeLayout>
+</layout>

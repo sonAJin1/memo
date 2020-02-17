@@ -20,7 +20,7 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Design.NoActionBar" />
-        <activity android:name=".components.view.activity.AddMemoActivity" />
+        <activity android:name=".components.view.activity.EditMemoActivity" />
         <activity android:name=".components.view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

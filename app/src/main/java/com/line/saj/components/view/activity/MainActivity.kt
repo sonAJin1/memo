@@ -2,7 +2,6 @@ package com.line.saj.components.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -32,6 +31,10 @@ import com.line.saj.repository.MemoRepository
  *       11. 가능하면 달력 기능까지 추가
  *       12. 기분 체크하는 부
  *
+ *
+ *
+ * TODO: error memo model list read 하는 부분에서 오류 잡을 것
+ *       update 하는 부분에서 오류남 쿼리 문제인지 뭔지 확인 할 것
  */
 
 class MainActivity : BaseActivity() {
@@ -67,7 +70,7 @@ class MainActivity : BaseActivity() {
         })
 
         vm.addMemoConverter.observe(this, Observer {
-            val intent = Intent(this, AddMemoActivity::class.java)
+            val intent = Intent(this, EditMemoActivity::class.java)
             startActivity(intent)
         })
 
@@ -87,9 +90,9 @@ class MainActivity : BaseActivity() {
         val adapter = MemoAdapter()
 
         adapter.setListener(object : MemoAdapter.OnClickListener {
-            override fun onClickItem(memo: Memo) {
+            override fun onClickItem(id: Int) {
                 val intent = Intent(this@MainActivity, DetailActivity::class.java)
-                intent.putExtra(INTENT_MEMO, memo)
+                intent.putExtra(INTENT_MEMO, id)
                 startActivity(intent)
             }
 

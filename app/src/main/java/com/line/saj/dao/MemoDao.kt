@@ -16,13 +16,17 @@ interface MemoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(memo: Memo)
 
-    @Query("DELETE from memos where id = :id")
+    @Query("DELETE FROM memos WHERE id = :id")
     fun delete(id: Int)
 
     @Query("DELETE from memos")
     fun deleteAll()
 
 
-    @Query("UPDATE memos SET title = :title, contents = :contents, image = :image, modifyDate = :modifyDate where id = :id")
-    fun update(id:Int, title: String, contents: String, image: List<String>, modifyDate: DateTime)
+    @Query("UPDATE memos SET title = :title, contents = :contents WHERE id = :id")
+    fun update(id:Int, title: String, contents: String)
+
+
+    @Query("SELECT * FROM memos WHERE id = :id")
+    fun get(id: Int) : LiveData<Memo>
 }

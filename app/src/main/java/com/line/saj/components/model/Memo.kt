@@ -1,5 +1,6 @@
 package com.line.saj.components.model
 
+import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -8,7 +9,6 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.line.saj.dao.Converts
 import org.joda.time.DateTime
-import java.util.*
 
 
 @Entity(tableName = "memos")
@@ -27,11 +27,8 @@ data class Memo(
     @ColumnInfo(name = "image")
     var image: List<String>,
 
-    @ColumnInfo(name = "creationDate")
-    var creationDate: DateTime,
-
-    @ColumnInfo(name = "modifyDate")
-    var modifyDate: DateTime?
+    @ColumnInfo(name = "createDate")
+    var createDate: DateTime
 
 ) : Parcelable {
 
@@ -43,7 +40,7 @@ data class Memo(
                 listOf<String>().apply {
                     parcel.readList(this, String::class.java.classLoader)
                 },
-                parcel.readSerializable() as DateTime,
+                //parcel.readStringList(this.image) as List<String>,
                 parcel.readSerializable() as DateTime)
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -51,8 +48,7 @@ data class Memo(
         parcel.writeString(title)
         parcel.writeString(contents)
         parcel.writeStringList(image)
-        parcel.writeSerializable(creationDate)
-        parcel.writeSerializable(modifyDate)
+        parcel.writeSerializable(createDate)
 
     }
 

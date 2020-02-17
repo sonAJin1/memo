@@ -15,29 +15,51 @@
         android:layout_height="match_parent"
         android:padding="@dimen/x24dp">
 
+        <RelativeLayout
+            android:id="@+id/rl_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/ib_back"
+                android:layout_width="@dimen/x30dp"
+                android:layout_height="@dimen/x30dp"
+                android:background="@drawable/ic_arrow_back_black_24dp"
+                android:onClick="@{()->vm.onClickBack()}"/>
+
+            <ImageButton
+                android:id="@+id/ib_modify"
+                android:layout_width="@dimen/x30dp"
+                android:layout_height="@dimen/x30dp"
+                android:layout_alignParentEnd="true"
+                android:onClick="@{()->vm.onClickModify()}"/>
+
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="title"
-            android:textStyle="bold"
-            android:textSize="@dimen/x24dp"
+            android:text="@{vm.memo.title}"
             android:textColor="#000"
-            android:text="@{vm.memo.title}"/>
+            android:textSize="@dimen/x24dp"
+            android:layout_below="@+id/rl_header"
+            android:textStyle="bold"
+            tools:text="title" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_title"
-            android:text="@{vm.memo.contents}"/>
+            android:text="@{vm.memo.contents}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_photo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </RelativeLayout>
 </layout>

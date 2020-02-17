@@ -50,7 +50,7 @@
                 android:id="@+id/tv_date_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:convert_text="@{memo.creationDate.dayOfMonth}"
+                app:convert_text="@{memo.createDate.dayOfMonth}"
                 tools:text="2020.02.02"/>
         </LinearLayout>
 
