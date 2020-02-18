@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/iv_image"
-            android:layout_width="@dimen/x150dp"
-            android:layout_height="@dimen/x150dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x230dp"
             app:bind_image="@{image}"/>
 
     </LinearLayout>

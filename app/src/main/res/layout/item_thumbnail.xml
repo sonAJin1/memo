@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/iv_thumbnail"
-            android:layout_width="@dimen/x56dp"
-            android:layout_height="@dimen/x56dp"
+            android:layout_width="@dimen/x70dp"
+            android:layout_height="@dimen/x70dp"
             android:layout_marginTop="@dimen/x7dp"
             android:layout_marginRight="@dimen/x5dp"
             bind_image="@{photo}"
@@ -22,12 +22,12 @@
 
         <ImageView
             android:id="@+id/iv_photo_delete"
-            android:layout_width="@dimen/x15dp"
-            android:layout_height="@dimen/x15dp"
+            android:layout_width="@dimen/x25dp"
+            android:layout_height="@dimen/x25dp"
             android:layout_alignEnd="@+id/iv_thumbnail"
             android:layout_marginRight="-5dp"
             android:layout_marginTop="2dp"
-            android:background="@drawable/ic_photo_delete"
+            android:background="@drawable/ic_cancel_black_24dp"
 
             />
 

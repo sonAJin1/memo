@@ -14,22 +14,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/header"
+            layout="@layout/layout_header"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_memo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/header"
+            android:layout_marginTop="@dimen/x10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         <ImageButton
             android:id="@+id/ib_add_memo"
-            android:layout_width="@dimen/x80dp"
-            android:layout_height="@dimen/x80dp"
+            android:layout_width="@dimen/x70dp"
+            android:layout_height="@dimen/x70dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/x18dp"
-            android:alpha=".6"
+            android:layout_margin="@dimen/x24dp"
             android:onClick="@{()->vm.onClickAddMemo()}"
-            android:background="@drawable/ic_add_circle_outline_black_24dp" />
+            android:src="@drawable/ic_edit_white_24dp"
+            android:background="@drawable/bg_circle" />
 
     </RelativeLayout>
 </layout>

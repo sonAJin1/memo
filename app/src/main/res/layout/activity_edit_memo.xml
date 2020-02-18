@@ -18,15 +18,13 @@
         <RelativeLayout
             android:id="@+id/rl_select_category"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x80dp"
-            android:background="#efefef">
-
+            android:layout_height="@dimen/x80dp">
 
             <EditText
                 android:id="@+id/et_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="19sp"
+                android:textSize="21sp"
                 android:textColor="#333333"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="4sp"
@@ -45,7 +43,15 @@
                 android:layout_marginRight="@dimen/x24dp"
                 android:background="@drawable/ic_clear_black_24dp"
                 android:onClick="@{()->vm.onClickClose()}"
+                android:alpha=".2"
                 android:layout_centerVertical="true"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height=".4dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/black"
+                android:alpha=".2"/>
 
         </RelativeLayout>
 
@@ -72,7 +78,7 @@
             android:textColor="#80333333"
             android:letterSpacing="-0.02"
             android:lineSpacingExtra="6sp"
-            android:text="0"
+            android:text="0개 이미지 첨부"
             android:textStyle="bold"
             android:layout_above="@+id/scroll"
             android:layout_marginLeft="@dimen/x24dp"/>
@@ -110,10 +116,9 @@
 
                 <RelativeLayout
                     android:id="@+id/rl_photo_btn"
-                    android:layout_width="@dimen/x56dp"
-                    android:layout_height="@dimen/x56dp"
+                    android:layout_width="@dimen/x70dp"
+                    android:layout_height="@dimen/x70dp"
                     android:background="@drawable/bg_photo_btn"
-                    android:src="@drawable/ic_add_circle_black_24dp"
                     android:layout_toRightOf="@+id/sv_thumbnail"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="@dimen/x10dp"
@@ -121,10 +126,9 @@
 
                     <ImageView
                         android:id="@+id/iv_photo_btn"
-                        android:layout_width="@dimen/x40dp"
-                        android:layout_height="@dimen/x40dp"
+                        android:layout_width="@dimen/x45dp"
+                        android:layout_height="@dimen/x45dp"
                         android:src="@drawable/ic_add_circle_black_24dp"
-                        android:alpha="0.5"
                         android:onClick="@{()->vm.onClickAddPhoto()}"
                         android:layout_centerInParent="true"/>
 
@@ -143,9 +147,9 @@
             android:letterSpacing="-0.02"
             android:textStyle="bold"
             android:text="확인"
-            android:textColor="#ffff"
+            android:textColor="@color/white"
             android:gravity="center_horizontal"
-            android:background="@color/cardview_dark_background"
+            android:background="@color/black"
             android:onClick="@{()->vm.onClickAddMemo()}"
             />
 

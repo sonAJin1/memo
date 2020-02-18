@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="memo"
             type="com.line.saj.components.model.Memo" />
@@ -12,56 +13,109 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x10dp"
+        android:layout_marginTop="@dimen/x2dp"
+        android:layout_marginRight="@dimen/x10dp"
+        android:layout_marginBottom="@dimen/x2dp"
+        android:background="@drawable/shadow"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/x24dp"
-        android:paddingTop="@dimen/x6dp"
-        android:paddingRight="@dimen/x24dp"
-        android:paddingBottom="@dimen/x6dp">
+        android:paddingRight="@dimen/x24dp">
 
-        <ImageView
-            android:id="@+id/iv_thumb"
-            bind_image="@{memo.image.size()>0 ? memo.image.get(0) : null}"
-            android:layout_width="@dimen/x50dp"
-            android:layout_height="@dimen/x50dp" />
+        <RelativeLayout
+            android:id="@+id/rl_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/iv_thumb"
+                bind_image="@{memo.image.size()>0 ? memo.image.get(0) : null}"
+                android:layout_width="@dimen/x78dp"
+                android:layout_height="@dimen/x110dp"
+                android:background="@color/colorPrimaryDark" />
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+
+                <TextView
+                    android:id="@+id/tv_date_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/white"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    app:convert_text="@{memo.createDate.dayOfMonth}"
+                    tools:text="7" />
+
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="@dimen/x30dp"
+                    android:layout_height="@dimen/x1dp"
+                    android:layout_below="@id/tv_date_day"
+                    android:layout_centerHorizontal="true"
+                    android:background="@color/white" />
+
+                <TextView
+                    android:id="@+id/tv_date_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/x3dp"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:month_text="@{memo.createDate.monthOfYear}"
+                    tools:text="FEB" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/x5dp"
-            android:layout_toRightOf="@+id/iv_thumb"
-            android:orientation="vertical">
+            android:layout_marginLeft="@dimen/x18dp"
+            android:layout_toRightOf="@+id/rl_preview"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/x6dp">
 
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/x5dp"
                 android:text="@{memo.title}"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 tools:text="메모 테스트" />
 
             <TextView
                 android:id="@+id/tv_contents"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLength="15"
                 android:text="@{memo.contents}"
+                android:textSize="13sp"
                 tools:text="메모 테스트" />
-
-            <TextView
-                android:id="@+id/tv_date_day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:convert_text="@{memo.createDate.dayOfMonth}"
-                tools:text="2020.02.02"/>
         </LinearLayout>
 
 
         <ImageView
             android:id="@+id/iv_delete"
-            android:layout_width="@dimen/x30dp"
-            android:layout_height="@dimen/x30dp"
+            android:layout_width="@dimen/x25dp"
+            android:layout_height="@dimen/x25dp"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:alpha=".4"
+            android:layout_marginTop="@dimen/x17dp"
+            android:alpha=".1"
             android:background="@drawable/ic_clear_black_24dp" />
 
 

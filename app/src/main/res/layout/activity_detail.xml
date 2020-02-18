@@ -5,6 +5,7 @@
     tools:context=".components.view.activity.DetailActivity">
 
     <data>
+
         <variable
             name="vm"
             type="com.line.saj.components.viewModel.MemoDetailViewModel" />
@@ -12,54 +13,81 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/x24dp">
+        android:layout_height="match_parent">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_photo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x230dp"
+            android:background="@color/black"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rc_photo">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/x24dp">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.memo.title}"
+                    android:textColor="#000"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    tools:text="title" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_title"
+                    android:layout_marginBottom="@dimen/x10dp"
+                    android:alpha=".4"
+                    android:text="@{vm.memo.createDate.toString()}"
+                    android:textSize="12sp"
+                    tools:text="sdf" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_date"
+                    android:text="@{vm.memo.contents}"
+                    android:textSize="20sp"
+                    tools:text="sdf" />
+            </RelativeLayout>
+
+        </ScrollView>
 
         <RelativeLayout
             android:id="@+id/rl_header"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/x24dp">
 
             <ImageButton
                 android:id="@+id/ib_back"
                 android:layout_width="@dimen/x30dp"
                 android:layout_height="@dimen/x30dp"
-                android:background="@drawable/ic_arrow_back_black_24dp"
-                android:onClick="@{()->vm.onClickBack()}"/>
+                android:background="@drawable/ic_keyboard_backspace_white_24dp"
+                android:onClick="@{()->vm.onClickBack()}" />
 
             <ImageButton
                 android:id="@+id/ib_modify"
                 android:layout_width="@dimen/x30dp"
                 android:layout_height="@dimen/x30dp"
                 android:layout_alignParentEnd="true"
-                android:onClick="@{()->vm.onClickModify()}"/>
+                android:background="@drawable/ic_more_vert_black_24dp"
+                android:onClick="@{()->vm.onClickModify()}" />
 
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{vm.memo.title}"
-            android:textColor="#000"
-            android:textSize="@dimen/x24dp"
-            android:layout_below="@+id/rl_header"
-            android:textStyle="bold"
-            tools:text="title" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_title"
-            android:text="@{vm.memo.contents}" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rc_photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
     </RelativeLayout>
 </layout>

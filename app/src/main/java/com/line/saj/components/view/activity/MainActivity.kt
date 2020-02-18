@@ -2,6 +2,9 @@ package com.line.saj.components.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -22,19 +25,11 @@ import com.line.saj.repository.MemoRepository
  *
  * TODO: 1. !!사용한 부분 .?등을 사용하거나 최대한 사용을 지양할 것
  *       2. 상단에 스크롤에 따라서 보이고 안보이는 검색바 만들 것
- *       3. 상세 페이지 만들 것
  *       4. url 입력해서 이미지 가져오는 dialog 만들 것
- *       6. memo list 삭제 방법 : x 버튼 클릭에서 오른쪽으로 슬라이드 해서 지울 수 있게
- *       8. design
- *       9. 다른 메모앱 보고 참고 할 것
- *       10. 메모가 쓰인 날짜 model에 추가 할 것 (model에는 있고, converter에서 date timestamp로 변경하는 부분과, addMemoActivity 에서 현재 시간 가져와서 넣어주는 부분 만들 것)
- *       11. 가능하면 달력 기능까지 추가
- *       12. 기분 체크하는 부
- *
  *
  *
  * TODO: error memo model list read 하는 부분에서 오류 잡을 것
- *       update 하는 부분에서 오류남 쿼리 문제인지 뭔지 확인 할 것
+ *
  */
 
 class MainActivity : BaseActivity() {
@@ -126,6 +121,42 @@ class MainActivity : BaseActivity() {
         val thread = Thread(r)
         thread.start()
     }
+
+
+    // ================================================
+    //
+    //  Set Spinner
+    //
+    // ================================================
+
+    private fun setSpinner(yearItem: ArrayList<String>){
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            yearItem
+        )
+
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+        binding.header.spYear.adapter = adapter
+
+        binding.header.spYear.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectYear = parent!!.getItemAtPosition(position)
+            }
+
+        }
+
+    }
+
 
 
     // ================================================

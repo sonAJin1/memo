@@ -89,11 +89,8 @@ class EditMemoActivity : BaseActivity(), ImageTypeBottomDialogFragment.OnClickLi
             }
 
             if (!isModifyMode) addMemo(Memo(0, title, content, imageThumbnailList, DateTime()))
-            if (isModifyMode) {
-                Log.e("modify id: ",vm.memo.value!!.memoId.toString())
-                modifyMemo(vm.memo.value!!.memoId, title, content)
+            if (isModifyMode) modifyMemo(vm.memo.value!!.memoId, title, content)
 
-            }
                 finish()
         })
 

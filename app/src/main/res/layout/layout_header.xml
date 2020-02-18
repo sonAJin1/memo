@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x70dp"
+        android:orientation="vertical"
+        >
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x1dp"
+            android:background="@color/black"
+            android:alpha=".1"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+</layout>
