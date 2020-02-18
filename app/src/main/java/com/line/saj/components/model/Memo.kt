@@ -40,7 +40,6 @@ data class Memo(
                 listOf<String>().apply {
                     parcel.readList(this, String::class.java.classLoader)
                 },
-                //parcel.readStringList(this.image) as List<String>,
                 parcel.readSerializable() as DateTime)
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.line.saj.components.model.Memo
 import com.line.saj.databinding.ItemDetailImageBinding
-import com.line.saj.databinding.ItemImageTypeBinding
 import com.line.saj.databinding.ItemMemoBinding
 import com.line.saj.utils.RecyclerArrayAdapter
 

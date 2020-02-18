@@ -48,7 +48,7 @@ class ImagePickerActivity : BaseActivity() {
 
         val intent = intent
         if (intent == null) {
-            showToast("Image picker option is missing")
+            showToast(getString(R.string.image_picker_error))
             return
         }
 
@@ -167,7 +167,7 @@ class ImagePickerActivity : BaseActivity() {
 
     private fun queryName(resolver: ContentResolver, uri: Uri): String {
         val returnCursor = resolver.query(uri, null, null, null, null)
-        assert( returnCursor != null) //TODO: 이거 뭐임?
+        assert( returnCursor != null)
         val nameIndex = returnCursor!!.getColumnIndex(OpenableColumns.DISPLAY_NAME)
         returnCursor.moveToFirst()
         val name = returnCursor.getString(nameIndex)

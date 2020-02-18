@@ -42,10 +42,7 @@ class EditMemoActivity : BaseActivity(), ImageTypeBottomDialogFragment.OnClickLi
     private lateinit var binding: ActivityEditMemoBinding
     private val detailFragment = ImageTypeBottomDialogFragment.newInstance()
     private var isModifyMode = false
-
     private var imageThumbnailList = ArrayList<String>()
-
-    //TODO: 오늘 안에 Parcelable 오류 안잡히면 intent로 model 전달 받는거에서 db에서 get하는 걸로 바꾸기
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,8 +90,6 @@ class EditMemoActivity : BaseActivity(), ImageTypeBottomDialogFragment.OnClickLi
 
                 finish()
         })
-
-        //TODO: viewModel memo랑 binding memo랑 연결해야함
 
         if(isModifyMode) modifySetData(vm,memoData!!)
 
@@ -165,7 +160,7 @@ class EditMemoActivity : BaseActivity(), ImageTypeBottomDialogFragment.OnClickLi
             }
 
             override fun onPermissionDenied(deniedPermissions: ArrayList<String>?) {
-                refuseAccessOnGallery() // 접근 금지 다이얼로그
+                refuseAccessOnGallery()
             }
         }
         TedPermission.with(this)
@@ -269,7 +264,7 @@ class EditMemoActivity : BaseActivity(), ImageTypeBottomDialogFragment.OnClickLi
 
         // setting aspect ratio
         intent.putExtra(INTENT_LOCK_ASPECT_RATIO, true)
-        intent.putExtra(INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(INTENT_ASPECT_RATIO_X, 1)
         intent.putExtra(INTENT_ASPECT_RATIO_Y, 1)
 
         // setting maximum bitmap width and height
@@ -287,9 +282,9 @@ class EditMemoActivity : BaseActivity(), ImageTypeBottomDialogFragment.OnClickLi
             INTENT_IMAGE_PICKER_OPTION,
             REQUEST_GALLERY_IMAGE
         )
-        // setting aspect ratio
+
         intent.putExtra(INTENT_LOCK_ASPECT_RATIO, true)
-        intent.putExtra(INTENT_ASPECT_RATIO_X, 1) // 16x9, 1x1, 3:4, 3:2
+        intent.putExtra(INTENT_ASPECT_RATIO_X, 1)
         intent.putExtra(INTENT_ASPECT_RATIO_Y, 1)
         startActivityForResult(intent, REQUEST_IMAGE)
     }

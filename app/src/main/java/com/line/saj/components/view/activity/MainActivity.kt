@@ -21,17 +21,6 @@ import com.line.saj.network.ConnectivityHelper
 import com.line.saj.repository.MemoRepository
 
 
-/**
- *
- * TODO: 1. !!사용한 부분 .?등을 사용하거나 최대한 사용을 지양할 것
- *       2. 상단에 스크롤에 따라서 보이고 안보이는 검색바 만들 것
- *       4. url 입력해서 이미지 가져오는 dialog 만들 것
- *
- *
- * TODO: error memo model list read 하는 부분에서 오류 잡을 것
- *
- */
-
 class MainActivity : BaseActivity() {
 
     private var memoRepo: MemoRepository? = null
@@ -167,8 +156,8 @@ class MainActivity : BaseActivity() {
 
     private fun showNetworkErrorAlert() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("ERROR").setMessage("인터넷 연결을 확인해주세요.")
-        builder.setPositiveButton("OK") { _, _ -> finish() }
+        builder.setTitle(getString(R.string.error)).setMessage(R.string.check_the_internet)
+        builder.setPositiveButton(getString(R.string.add_ok)) { _, _ -> finish() }
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
@@ -176,9 +165,9 @@ class MainActivity : BaseActivity() {
 
     private fun showDeleteMemoAlert(memoId: Int) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Alert").setMessage("메모를 삭제하시겠습니까?")
-        builder.setPositiveButton("삭제") { _, _ -> deleteMemo(memoId) }
-        builder.setNegativeButton("취소") { _, _ -> }
+        builder.setTitle(getString(R.string.alert)).setMessage(getString(R.string.delete_memo))
+        builder.setPositiveButton(getString(R.string.delete)) { _, _ -> deleteMemo(memoId) }
+        builder.setNegativeButton(getString(R.string.cancel)) { _, _ -> }
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }

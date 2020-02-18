@@ -17,10 +17,7 @@ import com.line.saj.repository.MemoRepository
 
 class DetailActivity : BaseActivity() {
 
-    //TODO: 몇장 중에 몇장째 스크롤 중인지 이미지 띄울 것
-
     private lateinit var binding: ActivityDetailBinding
-    val modifyRequestCode = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +28,7 @@ class DetailActivity : BaseActivity() {
 
         subscribeUi(memoId)
     }
+
 
     private fun subscribeUi(memoId: Int) {
 
@@ -47,7 +45,7 @@ class DetailActivity : BaseActivity() {
         vm.modifyBtnClickConverter.observe(this, Observer {
             val intent = Intent(this, EditMemoActivity::class.java)
             intent.putExtra("MODIFY_MEMO", vm.memo.value)
-            startActivityForResult(intent,modifyRequestCode)
+            startActivity(intent)
         })
 
         vm.backBtnClickConverter.observe(this, Observer {
@@ -57,6 +55,13 @@ class DetailActivity : BaseActivity() {
         binding.vm = vm
         binding.lifecycleOwner = this
     }
+
+
+    // ================================================
+    //
+    //  Image Adapter
+    //
+    // ================================================
 
     private fun initAdapter(imageList: List<String>?){
         if(imageList==null) return
